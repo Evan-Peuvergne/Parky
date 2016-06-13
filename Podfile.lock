@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (3.0.1)
+  - Fabric (1.6.1)
+  - Mapbox-iOS-SDK (3.0.1)
+  - MapboxGeocoder.swift (0.5.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0.0-beta.3)
+  - Fabric
+  - Mapbox-iOS-SDK
+  - MapboxGeocoder.swift (from `https://github.com/mapbox/MapboxGeocoder.swift.git`, tag `v0.5.0`)
+
+EXTERNAL SOURCES:
+  MapboxGeocoder.swift:
+    :git: https://github.com/mapbox/MapboxGeocoder.swift.git
+    :tag: v0.5.0
+
+CHECKOUT OPTIONS:
+  MapboxGeocoder.swift:
+    :git: https://github.com/mapbox/MapboxGeocoder.swift.git
+    :tag: v0.5.0
+
+SPEC CHECKSUMS:
+  Alamofire: 2457e1b2e6c46bb05c3a598c542b7bfd08893775
+  Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
+  Mapbox-iOS-SDK: 61e79f3dd8432617bd1a66b2d7273ab5ce923ca9
+  MapboxGeocoder.swift: 4fbe12e42458db895ff73739c69743c943d0824e
+
+PODFILE CHECKSUM: 0420d4e7c6fa42e7971ae9c17d36cc72baeca79b
+
+COCOAPODS: 1.0.1
