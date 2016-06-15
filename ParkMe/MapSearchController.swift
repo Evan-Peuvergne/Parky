@@ -74,7 +74,6 @@ class MapSearchController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var formStatusContainer: UIView!
     @IBOutlet weak var formStatusContainerTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var formStatusLabel: UILabel!
-
     
     let autoCompleteView : UITableView = UITableView()
     let datePicker : UIDatePicker = UIDatePicker()
@@ -241,6 +240,9 @@ class MapSearchController: UIViewController, UITableViewDelegate, UITableViewDat
         UIView.animateWithDuration(0.2, delay: delay, options: .CurveEaseIn, animations: { () -> Void in
             self.autoCompleteView.alpha = 1
         }, completion: nil)
+        
+        // Suggestions
+        self.suggestionsUpdate()
         
     }
     

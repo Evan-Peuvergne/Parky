@@ -30,13 +30,14 @@ class Spot: NSObject
     var lat : Double
     var long : Double
     
-    var price : Double?
-    var distance : Double?
+    var distance : Int
+    var price : Int
+    var grade : Int
     
     
     // Map
     
-    var marker : MGLPointAnnotation!
+    var marker : SpotMarker!
     
     
     
@@ -52,13 +53,15 @@ class Spot: NSObject
         // Super
         self.data = data
         self.index = index
-        NSLog("%d", index)
         
         self.lat = data.objectForKey("lat") as! Double
         self.long = data.objectForKey("lon") as! Double
         
-        self.marker = MGLPointAnnotation()
-        self.marker.coordinate = CLLocationCoordinate2D(latitude: self.lat, longitude: self.long)
+        self.distance = data.objectForKey("distance") as! Int
+        self.price = data.objectForKey("price") as! Int
+        self.grade = data.objectForKey("rate") as! Int
+        
+        self.marker = SpotMarker(coordinate: CLLocationCoordinate2D(latitude: self.lat, longitude: self.long), index: index)
         
         super.init()
         

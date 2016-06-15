@@ -11,7 +11,7 @@ import Mapbox
 import Alamofire
 
 
-class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegate, MapSearchControllerDelegate
+class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegate, MapSearchControllerDelegate, MapSpotCardDelegate
 {
     
     
@@ -31,6 +31,12 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     
     var spots : [Spot] = []
     
+    var currentLat : Double?
+    var currentLong : Double?
+    
+    var currentCard : Int? = 0
+    var totalCards : Int? = 0
+    
     
     // Properties > State
     
@@ -43,6 +49,12 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     
     var menu: MenuController!
     var search: MapSearchController!
+    
+    var locationAnnotation : LocationMarker?
+    var spotsAnnotations : [SpotMarker] = []
+    
+    var spotCards : [MapSpotCard?] = [nil, nil, nil]
+    
     
     
     
@@ -75,7 +87,6 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
         self.search.delegate = self
         
         self.search.view.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! + 20, width: self.view.bounds.width, height: 110)
-        // self.view.addSubview(self.search.view)
         window?.addSubview(self.search.view)
         self.addChildViewController(self.search)
         
@@ -92,7 +103,6 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
         window?.addSubview(self.menu.view)
         self.addChildViewController(self.menu)
         self.menu.view.layoutIfNeeded()
-        
         
     }
     
@@ -178,7 +188,12 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     // Map
     
     
-    // Map > Custom Marker
+    // Map > Loaded
+    
+    func mapViewDidFinishLoadingMap(mapView: MGLMapView) { self.search.searchSpots() }
+    
+    
+    // Map > Marker
     
     func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage?
     {
@@ -191,16 +206,51 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
             if let annotationImage = self.map.dequeueReusableAnnotationImageWithIdentifier(reuseIdentifier!) { return annotationImage }
             else { return MGLAnnotationImage(image: image, reuseIdentifier: reuseIdentifier!) }
         }
-        
-        // Load
+            
+        // Spot Marker
         else
         {
-            var image = UIImage(named: "pin")
+            var image = UIImage(named: "spot")
             image = image?.imageWithAlignmentRectInsets(UIEdgeInsetsMake(0, 0, image!.size.height/2, 0))
             let annotationImage = MGLAnnotationImage(image: image!, reuseIdentifier: "pin")
             return annotationImage
             
         }
+        
+    }
+    
+    
+    // Map > Select
+    
+    func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation)
+    {
+    
+        // Spot
+        if let spot : SpotMarker = annotation as? SpotMarker { self.showCard(spot.index) }
+        
+    }
+    
+    
+    // Map > Camera
+    
+    func setCameraPositionForMarker(marker: MGLAnnotation)
+    {
+        
+        // Coordinatates
+        let lat = marker.coordinate.latitude
+        let long = marker.coordinate.longitude
+        
+        // Distances
+        let distLat = abs(self.currentLat! - lat)
+        let distLong = abs(self.currentLong! - long)
+        let dist = max(max(distLat, distLong)*1.3, 0.001)
+        
+        // Camera
+        let sw = CLLocationCoordinate2D(latitude: self.currentLat! - dist, longitude: self.currentLong! - dist)
+        let ne = CLLocationCoordinate2D(latitude: self.currentLat! + dist, longitude: self.currentLong! + dist)
+        let bounds = MGLCoordinateBounds(sw: sw, ne: ne)
+        self.map.setVisibleCoordinateBounds(bounds, animated: true)
+
         
     }
     
@@ -216,56 +266,165 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     func onSearchDidStart(lat: Double, long: Double)
     {
         
+        // Reinit
+        if self.locationAnnotation != nil { self.map.removeAnnotation(self.locationAnnotation!) }
+        self.map.removeAnnotations(self.spotsAnnotations)
+        
+        self.currentLat = lat
+        self.currentLong = long
+        
         // Center
         self.map.setCenterCoordinate(CLLocationCoordinate2DMake(lat, long), zoomLevel: 16, animated: true)
         
         // Point
-        let point = LocationMarker(coordinate: CLLocationCoordinate2DMake(lat, long))
-        point.reuseIdentifier = "locationMarker"
-        self.map.addAnnotation(point)
+        self.locationAnnotation = LocationMarker(coordinate: CLLocationCoordinate2DMake(lat, long))
+        self.locationAnnotation!.reuseIdentifier = "locationMarker"
+        self.map.addAnnotation(self.locationAnnotation!)
         
     }
     
     
-//    func onSearchDidChange(lat: Double, long: Double, beginning: NSDate, end: NSDate)
-//    {
-//        
-//        // Variables
-//        // ...
-//        
-//        // Data
-//        let url = "http://37.139.18.66/search?lat=48.851867&lon=2.419921&arrivalYear=2016&arrivalMonth=6&arrivalDay=7&departureYear=2016&departureMonth=6&departureDay=10"
-//        Alamofire.request(.GET, url).responseJSON{ response in switch
-//            response.result {
-//                case .Success(let json):
-//                    
-//                    // Datas
-//                    let datas = json as! NSArray
-//                    for (index, data) in datas.enumerate()
-//                    {
-//                        let spot = Spot(data: data as! NSDictionary, index: index)
-//                        self.map.addAnnotation(spot.marker)
-//                        self.spots.append(spot)
-//                    }
+    // Search > Success
+    
+    func onSearchDidSuccess(lat: Double, long: Double, spots: [Spot])
+    {
+        
+        // Fail
+        if spots.count <= 0 { return }
+        
+        // Markers
+        self.spots = spots
+        
+        for spot in self.spots
+        {
+            self.spotsAnnotations.append(spot.marker)
+            self.map.addAnnotation(spot.marker)
+        }
+        
+        // Camera
+        if self.spotsAnnotations.count > 0 { self.setCameraPositionForMarker(self.spotsAnnotations[0]) }
+        
+        // Cards
+        self.currentCard = 0
+        self.totalCards = self.spots.count
+    
+        self.showCard(self.currentCard!)
+        
+    }
+    
+    
+    
+    
+    
+    // Cards
+    
+    
+    // Cards > Show
+    
+    func showCard (index: Int)
+    {
+        
+        // Variables
+        let bounds = UIScreen.mainScreen().bounds
+        
+        // Animation
+        for i in [-1, 0, 1]
+        {
+            
+            // Previous animation
+            if self.spotCards[i+1] != nil
+            {
+                UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+                    self.spotCards[i+1]?.frame.origin.y = bounds.height + 10
+                }, completion: nil)
+            }
+            
+            // Data
+            if (index + i < 0) || (index + i > self.totalCards! - 1) { continue }
+            let spot : Spot = self.spots[index + i]
+            
+            // Instanciate
+            let vue : MapSpotCard = NSBundle.mainBundle().loadNibNamed("MapSpotCard", owner: self, options: nil)[0] as! MapSpotCard
+            vue.instanciate(spot)
+            vue.delegate = self
+            vue.frame = CGRect(x: 30 + CGFloat(i)*(bounds.width-50), y: bounds.height + 10, width: bounds.width - 60, height: 123)
+            self.view.insertSubview(vue, atIndex: 10)
+            
+            // New animation
+            UIView.animateWithDuration(0.3, delay: 0.15, options: .CurveEaseIn, animations: { () -> Void in
+                vue.frame.origin.y = bounds.height - 133
+            }, completion: { (Bool) -> Void in
+                self.spotCards[i+1] = vue
+            })
+
+        }
+        
+        // Properties
+        self.currentCard = index
+        
+    }
+    
+    
+    // Cards > Swipe
+    
+    func mapSpotCardDidSwipe(index: Int, direction: Int)
+    {
+     
+        // Limits
+        if (self.currentCard! - direction < 0) || (self.currentCard! - direction > self.totalCards! - 1) { return }
+        
+        // Variables
+        let bounds = UIScreen.mainScreen().bounds
+        
+        // Animation
+        for item in self.spotCards
+        {
+            // Animation
+            if item == nil { continue }
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+                item?.frame.origin.x += CGFloat(direction)*(bounds.width-50)
+            }, completion: nil)
+        }
+        
+        // New
+//        let newIndex = self.currentCard! - direction*2
+//        if(newIndex >= 0) && (newIndex <= self.totalCards! - 1)
+//        {
+//            // Data
+//            let spot = self.spots[newIndex]
 //            
-//                    // Camera
-//                    let first : Spot = self.spots[0]
-//                    let distLat = abs(lat-first.lat)
-//                    let distLong = abs(long-first.long)
-//                    var dist = max(distLat, distLong)*1.5
-//                    dist = max(dist, 0.01)
+//            // View
+//            let vue : MapSpotCard = NSBundle.mainBundle().loadNibNamed("MapSpotCard", owner: self, options: nil)[0] as! MapSpotCard
+//            vue.instanciate(spot)
+//            vue.delegate = self
+//            vue.frame = CGRect(x: 30 + CGFloat(newIndex)*(bounds.width-50), y: bounds.height + 10, width: bounds.width - 60, height: 123)
+//            self.view.insertSubview(vue, atIndex: 10)
 //            
-//                    let sw = CLLocationCoordinate2D(latitude: lat-dist, longitude: long-dist)
-//                    let ne = CLLocationCoordinate2D(latitude: lat+dist, longitude: long+dist)
-//                    let bounds = MGLCoordinateBounds(sw: sw, ne: ne)
-//                    self.map.setVisibleCoordinateBounds(bounds, animated: true)
-//            
-//                default:
-//                    break;
-//            }
+//            // Animation
+//            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+//                vue.frame.origin.y = bounds.height - 133
+//            }, completion: nil)
 //        }
-//        
-//    }
+        
+        // Properties
+        self.currentCard! -= direction
+        
+        // Map
+        self.setCameraPositionForMarker(self.spots[self.currentCard!].marker)
+        
+    }
+    
+    
+    // Cards > Booked
+    
+    func mapSpotCardDidBook(index: Int)
+    {
+    
+        
+        
+    }
+    
+    
 
     
 

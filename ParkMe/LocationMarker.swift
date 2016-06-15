@@ -41,48 +41,49 @@ class LocationMarker: NSObject, MGLAnnotation
     init(coordinate: CLLocationCoordinate2D)
     {
         
-        // Properties
+        // Instanciate
         self.coordinate = coordinate
         
+        super.init()
+        
         // Image
-        self.image = generateImage(20)
+        self.image = self.generateImage(40)
+        
+    }
+    
+    
+    // Methods > Image
+    
+    func generateImage(size: CGFloat) -> (UIImage)
+    {
+        
+        let rect = CGRectMake(0, 0, size, size)
+        // let strokeWidth: CGFloat = 1
+        
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
+        
+        let centerRatio : CGFloat = 0.3
+        let ovalPath = UIBezierPath(ovalInRect: CGRectMake((1-centerRatio)*size/2, (1-centerRatio)*size/2, centerRatio*size, centerRatio*size))
+        UIColor(red: 255.0/255.0, green: 84.0/255.0, blue: 107.0/255.0, alpha: 1).setFill()
+        ovalPath.fill()
+        
+        let ovalOverlay = UIBezierPath(ovalInRect: CGRectMake(0, 0, size, size))
+        UIColor(red: 255.0/255.0, green: 84.0/255.0, blue: 107.0/255.0, alpha: 0.3).setFill()
+        ovalOverlay.fill()
+        
+        // UIColor.whiteColor().setStroke()
+        // ovalPath.lineWidth = strokeWidth
+        // ovalPath.stroke()
+        
+        let image : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
         
     }
     
 
     
     
-    
-}
-
-
-
-
-
-// Utils
-
-
-// Utils > Generate Image
-
-func generateImage(size: CGFloat) -> (UIImage)
-{
-    
-    let rect = CGRectMake(0, 0, size, size)
-    let strokeWidth: CGFloat = 1
-    
-    UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
-    
-    let ovalPath = UIBezierPath(ovalInRect: CGRectInset(rect, strokeWidth, strokeWidth))
-    UIColor(red: 255.0/255.0, green: 84.0/255.0, blue: 107.0/255.0, alpha: 1).setFill()
-    ovalPath.fill()
-    
-    UIColor.whiteColor().setStroke()
-    ovalPath.lineWidth = strokeWidth
-    ovalPath.stroke()
-    
-    let image : UIImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    
-    return image
     
 }

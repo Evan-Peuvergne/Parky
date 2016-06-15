@@ -497,10 +497,14 @@
                     <view key="view" contentMode="scaleToFill" id="yI4-SQ-RhT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="sEo-Jr-1OS" appends="YES" id="BYq-4w-Q9x"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="PLACES" id="5Ts-0u-f6N">
                         <barButtonItem key="leftBarButtonItem" image="hamburger.png" id="NS3-u8-prA">
-                            <color key="tintColor" red="0.96470588239999999" green="0.97647058819999999" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="onButtonMenuOpened:" destination="Efg-ad-q4z" id="JLR-Xx-Jq4"/>
                             </connections>
@@ -509,6 +513,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhS-da-3tW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="sEo-Jr-1OS"/>
             </objects>
             <point key="canvasLocation" x="2180" y="756"/>
         </scene>
