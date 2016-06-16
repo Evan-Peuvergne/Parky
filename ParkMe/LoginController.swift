@@ -58,6 +58,11 @@ class LoginController: UIViewController
         
         // Super
         super.viewDidLoad()
+        
+        // Center
+        let center = NSNotificationCenter.defaultCenter()
+        // center.addObserver(self, selector: "keyboardOnscreen:", name: UIKeyboardDidShowNotification, object: nil)
+        // center.addObserver(self, selector: "keyboardOffScreen:", name: UIKeyboardDidHideNotification, object: nil)
 
     }
     
@@ -74,7 +79,7 @@ class LoginController: UIViewController
     
     @IBAction func loginButtonDidTouched(sender: AnyObject)
     {
-        NSLog("coucou")
+        
         // Request
         let url = "http://37.139.18.66/users"
         Alamofire.request(.GET, url, parameters: ["mail": self.inputEmail.text!, "password" : self.inputPassword.text!]).responseJSON { response in switch response.result
@@ -106,6 +111,23 @@ class LoginController: UIViewController
             default:
                 break;
         }}
+        
+    }
+    
+    
+    // Keyboard
+    
+    func keyboardOnScreen(notification: NSNotification)
+    {
+        
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
+        
+        // let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        self.view.frame = aRect
+
         
     }
     

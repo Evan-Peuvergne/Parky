@@ -131,6 +131,7 @@ class MenuController: UIViewController
         
         // Redirect
         let auth : UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AuthNavigationController") as! UINavigationController
+        self.delegate?.onButtonMenuClosed()
         self.presentViewController(auth, animated: true, completion: nil)
         
     }
