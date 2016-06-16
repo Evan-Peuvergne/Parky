@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="y6v-Nc-mtS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -63,7 +63,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Carte des places">
+                                                <state key="normal" title="Mes réservations">
                                                     <color key="titleColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <state key="selected">
@@ -75,6 +75,9 @@
                                                 <state key="focused">
                                                     <color key="titleColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="bookingsButtonDidTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9EL-cA-Dl7"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgN-aF-sue" customClass="MenuItemButton" customModule="ParkMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="340" width="298" height="60"/>
@@ -133,6 +136,9 @@
                                                 <state key="normal" title="Déconnexion" image="logout.png">
                                                     <color key="titleColor" red="1" green="0.32941176470588235" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="buttonLogoutDidTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eYM-0S-raH"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbI-vV-rji" customClass="MenuItemButton" customModule="ParkMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="220" width="298" height="60"/>
@@ -142,7 +148,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Mes réservations">
+                                                <state key="normal" title="Historique">
                                                     <color key="titleColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <state key="selected">
@@ -235,16 +241,18 @@
                         <outlet property="menuContainer" destination="6lN-gG-myA" id="A8E-97-tQP"/>
                         <outlet property="menuContainerLeadingConstraint" destination="wgT-Ep-3H2" id="v7V-Fo-Gu2"/>
                         <outlet property="menuContainerTrailingConstraint" destination="egW-zt-i22" id="nqX-IV-Qyn"/>
-                        <outlet property="menuItemBooking" destination="GbI-vV-rji" id="zxJ-5q-GWS"/>
-                        <outlet property="menuItemMap" destination="DsW-gC-H9b" id="x4j-9a-ckH"/>
+                        <outlet property="menuItemBookings" destination="DsW-gC-H9b" id="lTU-LJ-rR2"/>
+                        <outlet property="menuItemHistorical" destination="GbI-vV-rji" id="pmJ-gj-Knm"/>
                         <outlet property="menuItemPayment" destination="5Z9-dV-apI" id="o0g-3A-Vh2"/>
                         <outlet property="menuItemSettings" destination="xgN-aF-sue" id="fcc-dn-0Vh"/>
                         <outlet property="menuOverlay" destination="6lN-gG-myA" id="TA5-zB-FEE"/>
+                        <outlet property="userNameLabel" destination="Cm4-h3-gnB" id="tca-4o-FxS"/>
+                        <outlet property="userReservationsLabel" destination="2kT-zw-0yg" id="0VW-3M-PUv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1557" y="-292"/>
+            <point key="canvasLocation" x="1557" y="-1346"/>
         </scene>
         <!--Map Search Controller-->
         <scene sceneID="l38-xN-2X0">
@@ -416,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0S-H4-dxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2180" y="-292"/>
+            <point key="canvasLocation" x="1557" y="-420"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="81I-Bs-4nK">
@@ -442,9 +450,139 @@
             <point key="canvasLocation" x="1557" y="756"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="Wsv-6U-7LE">
+            <objects>
+                <navigationController storyboardIdentifier="AuthNavigationController" navigationBarHidden="YES" id="Q8t-r0-Iln" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8kA-7D-d3u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MSl-JT-Q2b" kind="relationship" relationship="rootViewController" id="r9T-5V-gYs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGN-iw-6kk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="57" y="756"/>
+        </scene>
+        <!--Login Controller-->
+        <scene sceneID="b9r-JO-Ppx">
+            <objects>
+                <viewController storyboardIdentifier="LoginController" id="MSl-JT-Q2b" customClass="LoginController" customModule="ParkMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6s9-rE-mtC"/>
+                        <viewControllerLayoutGuide type="bottom" id="jCS-Uv-9AW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NZ6-cx-aNp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ur2-w8-cWL">
+                                <rect key="frame" x="69" y="674" width="277" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBi-q5-nhL">
+                                        <rect key="frame" x="171" y="-7" width="111" height="47.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47.5" id="RC7-bX-wz7"/>
+                                            <constraint firstAttribute="width" constant="111" id="btx-4z-7ix"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                                        <state key="normal" title="S'ENREGISTRER">
+                                            <color key="titleColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAS ENCORE DE COMPTE ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCS-w3-VQV">
+                                        <rect key="frame" x="6" y="6" width="164" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="164" id="Kuk-Lv-V5W"/>
+                                            <constraint firstAttribute="height" constant="21" id="fMX-X3-nw4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="277" id="3jY-Ph-Jc8"/>
+                                    <constraint firstItem="wBi-q5-nhL" firstAttribute="leading" secondItem="aCS-w3-VQV" secondAttribute="trailing" constant="1" id="3lY-G5-HAi"/>
+                                    <constraint firstAttribute="trailing" secondItem="wBi-q5-nhL" secondAttribute="trailing" constant="-5" id="8rd-X5-I5B"/>
+                                    <constraint firstItem="aCS-w3-VQV" firstAttribute="centerY" secondItem="ur2-w8-cWL" secondAttribute="centerY" id="CXX-A0-2qa"/>
+                                    <constraint firstAttribute="height" constant="32" id="GrL-Gk-qur"/>
+                                    <constraint firstItem="wBi-q5-nhL" firstAttribute="centerY" secondItem="ur2-w8-cWL" secondAttribute="centerY" id="d8N-rf-xAi"/>
+                                    <constraint firstItem="aCS-w3-VQV" firstAttribute="leading" secondItem="ur2-w8-cWL" secondAttribute="leading" constant="6" id="tze-3j-jks"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vET-w7-S1C" customClass="FormButton" customModule="ParkMe" customModuleProvider="target">
+                                <rect key="frame" x="40" y="589" width="334" height="55"/>
+                                <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="ZZF-B0-KJE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="SE CONNECTER">
+                                    <color key="titleColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonDidTouched:" destination="MSl-JT-Q2b" eventType="touchUpInside" id="eG6-1f-qOu"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="john.doe@mail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CeN-Kl-F9f" customClass="FormInput" customModule="ParkMe" customModuleProvider="target">
+                                <rect key="frame" x="40" y="379" width="334" height="60"/>
+                                <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="qLv-mW-yWU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="label.text" value="EMAIL"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-dG-g4F" customClass="FormInput" customModule="ParkMe" customModuleProvider="target">
+                                <rect key="frame" x="40" y="479" width="334" height="60"/>
+                                <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="24M-z4-JNP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="label.text" value="PASSWORD"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ONw-dG-g4F" firstAttribute="top" secondItem="CeN-Kl-F9f" secondAttribute="bottom" constant="40" id="1qi-8K-laX"/>
+                            <constraint firstAttribute="trailing" secondItem="ONw-dG-g4F" secondAttribute="trailing" constant="40" id="3wj-Vw-GsQ"/>
+                            <constraint firstItem="ur2-w8-cWL" firstAttribute="centerX" secondItem="NZ6-cx-aNp" secondAttribute="centerX" id="DZM-6F-B5o"/>
+                            <constraint firstItem="CeN-Kl-F9f" firstAttribute="leading" secondItem="NZ6-cx-aNp" secondAttribute="leading" constant="40" id="Jis-y3-JkB"/>
+                            <constraint firstItem="ur2-w8-cWL" firstAttribute="top" secondItem="vET-w7-S1C" secondAttribute="bottom" constant="30" id="LHw-99-dKv"/>
+                            <constraint firstItem="ONw-dG-g4F" firstAttribute="leading" secondItem="NZ6-cx-aNp" secondAttribute="leading" constant="40" id="Q11-fZ-LxV"/>
+                            <constraint firstAttribute="trailing" secondItem="vET-w7-S1C" secondAttribute="trailing" constant="40" id="SXT-xa-c85"/>
+                            <constraint firstAttribute="trailing" secondItem="CeN-Kl-F9f" secondAttribute="trailing" constant="40" id="UrF-iJ-RKi"/>
+                            <constraint firstItem="jCS-Uv-9AW" firstAttribute="top" secondItem="ur2-w8-cWL" secondAttribute="bottom" constant="30" id="Wcv-fJ-SNe"/>
+                            <constraint firstItem="vET-w7-S1C" firstAttribute="top" secondItem="ONw-dG-g4F" secondAttribute="bottom" constant="50" id="bdm-ie-03B"/>
+                            <constraint firstItem="vET-w7-S1C" firstAttribute="leading" secondItem="NZ6-cx-aNp" secondAttribute="leading" constant="40" id="yPP-cn-hQo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fi6-4F-uki"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="inputEmail" destination="CeN-Kl-F9f" id="d6K-cV-V0q"/>
+                        <outlet property="inputPassword" destination="ONw-dG-g4F" id="fhE-HD-Ln6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MMY-7I-f2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="616" y="756"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="wxh-FK-fc2">
             <objects>
-                <navigationController storyboardIdentifier="BookedBundle" id="4HC-0Q-yFI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BookingsNavigationController" id="4HC-0Q-yFI" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A0N-xG-8WI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -456,7 +594,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bvs-xP-w21" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1557" y="1795"/>
+            <point key="canvasLocation" x="3127" y="756"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8FR-y1-gth">
@@ -484,7 +622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZU-5D-oG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2180" y="1795"/>
+            <point key="canvasLocation" x="3776" y="756"/>
         </scene>
         <!--Places disponibles-->
         <scene sceneID="wON-FR-ZyR">
@@ -502,9 +640,9 @@
                             <outletCollection property="gestureRecognizers" destination="sEo-Jr-1OS" appends="YES" id="BYq-4w-Q9x"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="PLACES" id="5Ts-0u-f6N">
-                        <barButtonItem key="leftBarButtonItem" image="hamburger.png" id="NS3-u8-prA">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <navigationItem key="navigationItem" title="Map spots" id="5Ts-0u-f6N">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="NS3-u8-prA">
+                            <color key="tintColor" red="0.41176470588235292" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onButtonMenuOpened:" destination="Efg-ad-q4z" id="JLR-Xx-Jq4"/>
                             </connections>
@@ -521,8 +659,8 @@
     <resources>
         <image name="arrival.png" width="17" height="17"/>
         <image name="departure.png" width="17" height="17"/>
-        <image name="hamburger.png" width="22" height="18"/>
         <image name="logout.png" width="21" height="21"/>
+        <image name="menu.png" width="21" height="16"/>
         <image name="search.png" width="23" height="23"/>
     </resources>
 </document>

@@ -6,23 +6,80 @@
 //  Copyright © 2016 evan peuvergne. All rights reserved.
 //
 
-import UIKit
 
+
+
+
+
+// Imports
+
+import UIKit
 import Fabric
 import Mapbox
 
 
+
+
+
+
+// Class
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate
+{
+    
+    
+    
+    
+    
+    
+    
+    
+    // Properties
+    
+    
+    // Properties > Outlets
 
     var window: UIWindow?
-
+    
+    var storyboard : UIStoryboard?
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Methods
+    
+    
+    // Methods > Launch
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
         
         // Dependencies
         Fabric.with([MGLAccountManager.self])
+        
+        // Init
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.makeKeyAndVisible()
+        
+        self.storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Auth
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var identifier : String!
+        var rootController : UINavigationController!
+        
+        if let user : NSDictionary = defaults.objectForKey("user") as? NSDictionary { identifier = "MainNavigationController" }
+        else { identifier = "AuthNavigationController" }
+        // identifier = "AuthNavigationController"
+        rootController = storyboard!.instantiateViewControllerWithIdentifier(identifier) as! UINavigationController
+        
+        if let window = self.window{ window.rootViewController = rootController }
         
         // Return
         return true

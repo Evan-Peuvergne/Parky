@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		8D03FB911D0ACD6B003302AC /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03FB901D0ACD6B003302AC /* NavigationBar.swift */; };
+		8D1209401D11EFAD00EA972D /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12093F1D11EFAD00EA972D /* FormButton.swift */; };
+		8D1209421D11F33200EA972D /* FormInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1209411D11F33200EA972D /* FormInput.swift */; };
 		8D4648F61D0D9647009D635F /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4648F51D0D9647009D635F /* location.png */; };
 		8D4648F81D0D97F5009D635F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4648F71D0D97F5009D635F /* pin.png */; };
+		8D785BC11D1219B40090F31B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D785BC01D1219B40090F31B /* LoginController.swift */; };
 		8D79011D1D0A271300375169 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D79011C1D0A271300375169 /* MapController.swift */; };
 		8D7D94B01D10882900F6E8D1 /* spot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7D94AE1D10882900F6E8D1 /* spot.png */; };
 		8D7D94B51D1091CD00F6E8D1 /* SpotMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D94B41D1091CD00F6E8D1 /* SpotMarker.swift */; };
 		8D7D94B91D109B5A00F6E8D1 /* MapSpotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D94B81D109B5A00F6E8D1 /* MapSpotCard.swift */; };
 		8D7D94BB1D109F3F00F6E8D1 /* MapSpotCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7D94BA1D109F3F00F6E8D1 /* MapSpotCard.xib */; };
 		8D97D27E1D04B57C000386C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D97D27D1D04B57C000386C3 /* AppDelegate.swift */; };
-		8D97D2801D04B57C000386C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D97D27F1D04B57C000386C3 /* ViewController.swift */; };
 		8D97D2831D04B57C000386C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D97D2811D04B57C000386C3 /* Main.storyboard */; };
 		8D97D2851D04B57C000386C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D97D2841D04B57C000386C3 /* Assets.xcassets */; };
 		8D97D2881D04B57C000386C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D97D2861D04B57C000386C3 /* LaunchScreen.storyboard */; };
 		8D97D2931D04B57C000386C3 /* ParkMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D97D2921D04B57C000386C3 /* ParkMeTests.swift */; };
 		8D97D29E1D04B57C000386C3 /* ParkMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D97D29D1D04B57C000386C3 /* ParkMeUITests.swift */; };
+		8DA4D5081D124EA5000515AA /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DA4D5061D124EA5000515AA /* menu@2x.png */; };
+		8DA4D5091D124EA5000515AA /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DA4D5071D124EA5000515AA /* menu.png */; };
 		8DB273351D0F2578008A4A4C /* MapSearchAdressSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB273341D0F2578008A4A4C /* MapSearchAdressSuggestion.swift */; };
 		8DB273371D0F32D0008A4A4C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DB273361D0F32D0008A4A4C /* search.png */; };
 		8DB273391D0F741E008A4A4C /* LocationMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB273381D0F741E008A4A4C /* LocationMarker.swift */; };
@@ -58,8 +62,11 @@
 		7CC9B76C7A01630831D61B1D /* Pods-ParkMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkMe/Pods-ParkMe.release.xcconfig"; sourceTree = "<group>"; };
 		7EA13440D987FCC4386777BE /* Pods_ParkMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D03FB901D0ACD6B003302AC /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		8D12093F1D11EFAD00EA972D /* FormButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
+		8D1209411D11F33200EA972D /* FormInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormInput.swift; sourceTree = "<group>"; };
 		8D4648F51D0D9647009D635F /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		8D4648F71D0D97F5009D635F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		8D785BC01D1219B40090F31B /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8D79011C1D0A271300375169 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		8D7D94AE1D10882900F6E8D1 /* spot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spot.png; sourceTree = "<group>"; };
 		8D7D94B41D1091CD00F6E8D1 /* SpotMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotMarker.swift; sourceTree = "<group>"; };
@@ -67,7 +74,6 @@
 		8D7D94BA1D109F3F00F6E8D1 /* MapSpotCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapSpotCard.xib; sourceTree = "<group>"; };
 		8D97D27A1D04B57C000386C3 /* ParkMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D97D27D1D04B57C000386C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8D97D27F1D04B57C000386C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8D97D2821D04B57C000386C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D97D2841D04B57C000386C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D97D2871D04B57C000386C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,6 +84,8 @@
 		8D97D2991D04B57C000386C3 /* ParkMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D97D29D1D04B57C000386C3 /* ParkMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkMeUITests.swift; sourceTree = "<group>"; };
 		8D97D29F1D04B57C000386C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DA4D5061D124EA5000515AA /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		8DA4D5071D124EA5000515AA /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		8DB273341D0F2578008A4A4C /* MapSearchAdressSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchAdressSuggestion.swift; sourceTree = "<group>"; };
 		8DB273361D0F32D0008A4A4C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		8DB273381D0F741E008A4A4C /* LocationMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMarker.swift; sourceTree = "<group>"; };
@@ -131,6 +139,7 @@
 		8D03FB8D1D0ACD34003302AC /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				8D12093E1D11EF5E00EA972D /* Forms */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -141,6 +150,31 @@
 				8D03FB901D0ACD6B003302AC /* NavigationBar.swift */,
 			);
 			name = NavigationBar;
+			sourceTree = "<group>";
+		};
+		8D12093E1D11EF5E00EA972D /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				8D12093F1D11EFAD00EA972D /* FormButton.swift */,
+				8D1209411D11F33200EA972D /* FormInput.swift */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
+		8D785BBD1D1219910090F31B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8D785BBE1D1219980090F31B /* Login */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		8D785BBE1D1219980090F31B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8D785BC01D1219B40090F31B /* LoginController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		8D79011E1D0A29C500375169 /* Components */ = {
@@ -181,7 +215,6 @@
 				8DE014321D08DD1900C438A6 /* Pages */,
 				8DE0142E1D08C54000C438A6 /* Shared */,
 				8D97D27D1D04B57C000386C3 /* AppDelegate.swift */,
-				8D97D27F1D04B57C000386C3 /* ViewController.swift */,
 				8D97D2811D04B57C000386C3 /* Main.storyboard */,
 				8D97D2841D04B57C000386C3 /* Assets.xcassets */,
 				8D97D2861D04B57C000386C3 /* LaunchScreen.storyboard */,
@@ -235,6 +268,7 @@
 		8DE014321D08DD1900C438A6 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				8D785BBD1D1219910090F31B /* Auth */,
 				8DE0B14A1D096F17003F30A4 /* Map */,
 				8DE014331D08DD2200C438A6 /* Menu */,
 			);
@@ -262,6 +296,8 @@
 		8DE014371D08FAC500C438A6 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8DA4D5061D124EA5000515AA /* menu@2x.png */,
+				8DA4D5071D124EA5000515AA /* menu.png */,
 				8D7D94AE1D10882900F6E8D1 /* spot.png */,
 				8DB273361D0F32D0008A4A4C /* search.png */,
 				8D4648F71D0D97F5009D635F /* pin.png */,
@@ -407,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DDEC1981D0C718B001F3D35 /* map.png in Resources */,
+				8DA4D5081D124EA5000515AA /* menu@2x.png in Resources */,
 				8D97D2881D04B57C000386C3 /* LaunchScreen.storyboard in Resources */,
 				8D4648F61D0D9647009D635F /* location.png in Resources */,
 				8D4648F81D0D97F5009D635F /* pin.png in Resources */,
@@ -416,6 +453,7 @@
 				8DB273371D0F32D0008A4A4C /* search.png in Resources */,
 				8DC08DF41D0CD5250094B88D /* departure.png in Resources */,
 				8D7D94BB1D109F3F00F6E8D1 /* MapSpotCard.xib in Resources */,
+				8DA4D5091D124EA5000515AA /* menu.png in Resources */,
 				8DE0B1601D098011003F30A4 /* hamburger.png in Resources */,
 				8DC08DF81D0CD6000094B88D /* arrival.png in Resources */,
 				8D7D94B01D10882900F6E8D1 /* spot.png in Resources */,
@@ -505,8 +543,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE014311D08C5C500C438A6 /* MenuController.swift in Sources */,
-				8D97D2801D04B57C000386C3 /* ViewController.swift in Sources */,
 				8D7D94B91D109B5A00F6E8D1 /* MapSpotCard.swift in Sources */,
+				8D1209401D11EFAD00EA972D /* FormButton.swift in Sources */,
+				8D785BC11D1219B40090F31B /* LoginController.swift in Sources */,
 				8D97D27E1D04B57C000386C3 /* AppDelegate.swift in Sources */,
 				8DC08DFB1D0CE6C20094B88D /* Spot.swift in Sources */,
 				8D7D94B51D1091CD00F6E8D1 /* SpotMarker.swift in Sources */,
@@ -515,6 +554,7 @@
 				8DB273351D0F2578008A4A4C /* MapSearchAdressSuggestion.swift in Sources */,
 				8DC08DF21D0CC15C0094B88D /* MapSearchController.swift in Sources */,
 				8D79011D1D0A271300375169 /* MapController.swift in Sources */,
+				8D1209421D11F33200EA972D /* FormInput.swift in Sources */,
 				8D03FB911D0ACD6B003302AC /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

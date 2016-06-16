@@ -85,10 +85,10 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
         // Search
         self.search = self.storyboard?.instantiateViewControllerWithIdentifier("MapSearchController") as! MapSearchController
         self.search.delegate = self
-        
-        self.search.view.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! + 20, width: self.view.bounds.width, height: 110)
-        window?.addSubview(self.search.view)
         self.addChildViewController(self.search)
+        
+        self.search.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 110)
+        self.view.addSubview(self.search.view)
         
         // Menu
         self.menu = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as! MenuController
@@ -113,6 +113,7 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     {
         
         // Super
+        NSLog("coucou")
         super.viewDidAppear(animated)
         
         
@@ -348,7 +349,7 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
             vue.instanciate(spot)
             vue.delegate = self
             vue.frame = CGRect(x: 30 + CGFloat(i)*(bounds.width-50), y: bounds.height + 10, width: bounds.width - 60, height: 123)
-            self.view.insertSubview(vue, atIndex: 10)
+            self.view.insertSubview(vue, belowSubview: self.search.view)
             
             // New animation
             UIView.animateWithDuration(0.3, delay: 0.15, options: .CurveEaseIn, animations: { () -> Void in
@@ -420,6 +421,8 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     func mapSpotCardDidBook(index: Int)
     {
     
+        // let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as! ViewController
+        
         
         
     }

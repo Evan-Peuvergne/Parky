@@ -10,13 +10,28 @@ import UIKit
 
 
 
+
+
 // Class
 
 class MenuController: UIViewController
 {
 
     
+    
+    
+    
+    
     // Properties
+    
+    
+    // Properties > Variables
+    
+    var userData : NSDictionary!
+    var userId : Int!
+    var userName : String!
+    var userEmail : String!
+    var userBookings : Int!
     
     
     // Properties > Delegate
@@ -31,10 +46,16 @@ class MenuController: UIViewController
     @IBOutlet weak var menuContainerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuContainerTrailingConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var menuItemMap: MenuItemButton!
-    @IBOutlet weak var menuItemBooking: MenuItemButton!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userReservationsLabel: UILabel!
+    
+    @IBOutlet weak var menuItemBookings: MenuItemButton!
+    @IBOutlet weak var menuItemHistorical: MenuItemButton!
     @IBOutlet weak var menuItemPayment: MenuItemButton!
     @IBOutlet weak var menuItemSettings: MenuItemButton!
+    
+    
+
     
     
     
@@ -47,25 +68,31 @@ class MenuController: UIViewController
     override func viewDidLoad()
     {
         
+        // Init
+        let defaults = NSUserDefaults.standardUserDefaults()
+        self.userData = defaults.objectForKey("user") as! NSDictionary
+        
+        self.userId = self.userData.objectForKey("id") as! Int
+        self.userName = self.userData.objectForKey("name") as! String
+        self.userEmail = self.userData.objectForKey("mail") as! String
+        self.userBookings = (self.userData.objectForKey("reservations") as! NSArray).count
+        
         // Super
         super.viewDidLoad()
         
-        // Notifs
-        self.menuItemMap.updateLabel(5)
-        self.menuItemBooking.updateLabel(1)
+        // UI
+        self.userNameLabel.text = self.userName
+        self.userReservationsLabel.text = String(format: "%i", self.userBookings) + " bookings"
+        
+        // self.menu.updateLabel(5)
+        // self.menuItemBooking.updateLabel(1)
 
     }
-
-    override func didReceiveMemoryWarning()
-    {
-        
-        // Super
-        super.didReceiveMemoryWarning()
-        
-        // ...
-        // ...
-        
-    }
+    
+    
+    
+    
+    
     
     
     // Events
@@ -77,9 +104,37 @@ class MenuController: UIViewController
     {
         
         self.delegate?.onButtonMenuClosed()
-        self.delegate?.onMenuSelected("BookedBundle")
+        // self.delegate?.onMenuSelected("BookingsNavigationController")
     
     }
+    
+    
+    // Events > Booking
+    
+    @IBAction func bookingsButtonDidTouched(sender: AnyObject)
+    {
+        
+        self.delegate?.onButtonMenuClosed()
+        self.delegate?.onMenuSelected("BookingsNavigationController")
+        
+    }
+    
+    
+    // Events > Logout
+    
+    @IBAction func buttonLogoutDidTouched(sender: AnyObject)
+    {
+        
+        // Defaults
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("user")
+        
+        // Redirect
+        let auth : UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AuthNavigationController") as! UINavigationController
+        self.presentViewController(auth, animated: true, completion: nil)
+        
+    }
+    
     
     
     // Events > Close

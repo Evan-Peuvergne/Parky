@@ -181,12 +181,12 @@ class MapSearchController: UIViewController, UITableViewDelegate, UITableViewDat
             self.view.backgroundColor = UIColor.whiteColor()
             self.view.frame.origin.y = 0
             self.view.frame.size.height = UIScreen.mainScreen().bounds.height
-            self.formViewTopConstraint.constant = self.navigationController!.navigationBar.frame.height + 30
+            // self.formViewTopConstraint.constant = 10
             self.formView.layoutIfNeeded()
-            self.searchButtonTopConstraint.constant = 30
+            self.searchButtonTopConstraint.constant = -35
             self.searchButton.layoutIfNeeded()
-            self.formStatusContainerTopConstraint.constant = 70 + nav!.frame.height
-            self.formStatusContainer.layoutIfNeeded()
+            // self.formStatusContainerTopConstraint.constant = 70 + nav!.frame.height
+            // self.formStatusContainer.layoutIfNeeded()
             nav!.frame.origin.y = -nav!.frame.height
         }, completion: nil)
         
@@ -203,13 +203,13 @@ class MapSearchController: UIViewController, UITableViewDelegate, UITableViewDat
         let nav = self.navigationController?.navigationBar
         UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
             self.view.backgroundColor = UIColor.clearColor()
-            self.view.frame.origin.y = nav!.frame.height + 20
-            self.formViewTopConstraint.constant = 10
+            self.view.frame.origin.y = 0
+            // self.formViewTopConstraint.constant = 10
             self.formView.layoutIfNeeded()
             self.searchButtonTopConstraint.constant = 20
             self.searchButton.layoutIfNeeded()
-            self.formStatusContainerTopConstraint.constant = 50
-            self.formStatusContainer.layoutIfNeeded()
+            // self.formStatusContainerTopConstraint.constant = 50
+            // self.formStatusContainer.layoutIfNeeded()
             nav!.frame.origin.y = 20
         }, completion: { (Bool) -> Void in
             

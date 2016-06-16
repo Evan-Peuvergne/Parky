@@ -56,6 +56,7 @@ class Spot: NSObject
         
         self.lat = data.objectForKey("lat") as! Double
         self.long = data.objectForKey("lon") as! Double
+        print(self.lat)
         
         self.distance = data.objectForKey("distance") as! Int
         self.price = data.objectForKey("price") as! Int
