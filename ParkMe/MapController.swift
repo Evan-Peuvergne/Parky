@@ -370,7 +370,7 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
     
     func mapSpotCardDidSwipe(index: Int, direction: Int)
     {
-     
+ 
         // Limits
         if (self.currentCard! - direction < 0) || (self.currentCard! - direction > self.totalCards! - 1) { return }
         
@@ -384,28 +384,48 @@ class MapController: UIViewController, MGLMapViewDelegate, MenuControllerDelegat
             if item == nil { continue }
             UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
                 item?.frame.origin.x += CGFloat(direction)*(bounds.width-50)
-            }, completion: nil)
+            }, completion: { (Bool) -> Void in
+            
+            })
+        }
+        
+        // Positions
+        var cpt = 0
+        for item in self.spotCards
+        {
+            
+            // Manip
+            var i = cpt+direction
+            if i >= 0 && i <= 2 { self.spotCards[i] = item }
+            else { item?.removeFromSuperview() }
+            
+            // Cpt
+            cpt += 1
         }
         
         // New
-//        let newIndex = self.currentCard! - direction*2
-//        if(newIndex >= 0) && (newIndex <= self.totalCards! - 1)
-//        {
-//            // Data
-//            let spot = self.spots[newIndex]
-//            
-//            // View
-//            let vue : MapSpotCard = NSBundle.mainBundle().loadNibNamed("MapSpotCard", owner: self, options: nil)[0] as! MapSpotCard
-//            vue.instanciate(spot)
-//            vue.delegate = self
-//            vue.frame = CGRect(x: 30 + CGFloat(newIndex)*(bounds.width-50), y: bounds.height + 10, width: bounds.width - 60, height: 123)
-//            self.view.insertSubview(vue, atIndex: 10)
-//            
-//            // Animation
-//            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
-//                vue.frame.origin.y = bounds.height - 133
-//            }, completion: nil)
-//        }
+        let newIndex = self.currentCard! - direction*2
+        if(newIndex >= 0) && (newIndex <= self.totalCards! - 1)
+        {
+            print("cacacaacacaca")
+            // Data
+            let spot = self.spots[newIndex]
+
+            // View
+            let vue : MapSpotCard = NSBundle.mainBundle().loadNibNamed("MapSpotCard", owner: self, options: nil)[0] as! MapSpotCard
+            vue.instanciate(spot)
+            vue.delegate = self
+            // vue.frame = CGRect(x: 30 + CGFloat(newIndex)*(bounds.width-50), y: bounds.height + 10, width: bounds.width - 60, height: 123)
+            vue.frame = CGRect(x: 30 + CGFloat(-direction*2)*(bounds.width-50), y: bounds.height - 133, width: bounds.width - 60, height: 123)
+            self.view.insertSubview(vue, belowSubview: self.search.view)
+
+            // Animation
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+                vue.frame.origin.x = 30 + CGFloat(-direction)*(bounds.width-50)
+            }, completion: { (Bool) -> Void in
+                if direction == -1 { self.spotCards[2] = vue } else { self.spotCards[0] = vue }
+            })
+        }
         
         // Properties
         self.currentCard! -= direction

@@ -76,7 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         if let user : NSDictionary = defaults.objectForKey("user") as? NSDictionary { identifier = "MainNavigationController" }
         else { identifier = "AuthNavigationController" }
-        // identifier = "AuthNavigationController"
         rootController = storyboard!.instantiateViewControllerWithIdentifier(identifier) as! UINavigationController
         
         if let window = self.window{ window.rootViewController = rootController }
